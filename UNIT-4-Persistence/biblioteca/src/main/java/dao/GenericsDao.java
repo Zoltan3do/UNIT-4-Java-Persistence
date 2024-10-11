@@ -7,6 +7,7 @@ import jakarta.persistence.EntityTransaction;
 
 public class GenericsDao {
 	
+	// Dagli studi del Sig. Pellizzari
 
     private final EntityManager entityManager;
 
