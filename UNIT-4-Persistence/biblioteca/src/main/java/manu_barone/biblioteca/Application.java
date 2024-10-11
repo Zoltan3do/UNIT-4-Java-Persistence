@@ -114,13 +114,18 @@ public class Application {
 
 
 		//---------------TESSERA----------------------------------------------------------------------------------------------
-		List<Articolo> articoliPerTessera = prestitoDao.ricercaTessera("1f4838eb-1192-48bb-8578-281b032b3a73");
-		if (articoliPerTessera != null) {
-		    for (Articolo a : articoliPerTessera) {
-		        System.out.println(a);
-		    }
-		} else {
-		    System.out.println("Nessun articolo trovato per la tessera specificata.");
+		List<Articolo> articoliPerTessera;
+		try {
+			articoliPerTessera = prestitoDao.ricercaTessera("1f4838eb-1192-48bb-8578-281b032b3a73",LocalDate.now());
+			if (!articoliPerTessera.isEmpty()) {
+			    for (Articolo a : articoliPerTessera) {
+			        System.out.println(a);
+			    }
+			} else {
+			    System.out.println("Nessun articolo trovato per la tessera specificata.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 

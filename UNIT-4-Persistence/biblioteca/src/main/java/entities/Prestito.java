@@ -13,9 +13,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @NamedQuery(
-		name="findPrestitoByTessera",
-		query="SELECT p FROM Prestito p WHERE p.dataRestituzionePrevista > CURRENT_DATE AND p.utente.numeroTessera = :nTessera"
-)
+	    name = "findArticoliByNumeroTesseraAndDate",
+	    query = "SELECT a FROM Articolo a WHERE a.id IN " +
+	            "(SELECT p.articolo.id FROM Prestito p WHERE p.utente.numeroTessera = :numeroTessera " +
+	            "AND p.dataRestituzionePrevista <= :data)"
+	)
+
 @Table(name="prestiti")
 public class Prestito {
 	@Id
